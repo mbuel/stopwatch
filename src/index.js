@@ -4,6 +4,24 @@ class Clock extends React.Component {
       this.state = { date: new Date() }; // this is the component state property object
     }
   
+    componentDidMount () {
+        this.timer = setInterval(
+          () => this.updateTime(),
+          1000
+        );
+    }
+
+    updateTime() {
+        this.setState({
+            date: new Date()
+        })
+        // this.state.date =  new Date();
+    }
+  
+    componentWillUnmount () {
+        clearInterval(this.timer);
+    }
+  
     render () {
       return (
         <div>
@@ -12,7 +30,6 @@ class Clock extends React.Component {
       )
     }
   }
-  
     ReactDOM.render(
       <Clock />,
       document.getElementById('root')

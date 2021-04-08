@@ -19,6 +19,28 @@ var Clock = function (_React$Component) {
   }
 
   _createClass(Clock, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.timer = setInterval(function () {
+        return _this2.updateTime();
+      }, 1000);
+    }
+  }, {
+    key: 'updateTime',
+    value: function updateTime() {
+      this.setState({
+        date: new Date()
+      });
+      // this.state.date =  new Date();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(this.timer);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
