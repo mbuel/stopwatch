@@ -47,6 +47,7 @@ var StopWatch = function (_React$Component) {
   }, {
     key: "resetCounter",
     value: function resetCounter() {
+      this.stopCounting();
       this.setState({
         timePassedInMilliSeconds: 0
       });

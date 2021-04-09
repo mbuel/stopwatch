@@ -27,6 +27,7 @@ class StopWatch extends React.Component {
     }
 
     resetCounter() {
+      this.stopCounting();
       this.setState({
         timePassedInMilliSeconds: 0
       })
