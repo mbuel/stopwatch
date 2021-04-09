@@ -6,58 +6,67 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Clock = function (_React$Component) {
-  _inherits(Clock, _React$Component);
+var Counter = function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-  function Clock(props) {
-    _classCallCheck(this, Clock);
+  function Counter(props) {
+    _classCallCheck(this, Counter);
 
-    var _this = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
+    // count value starts at 0
+    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
-    _this.state = { date: new Date() }; // this is the component state property object
+    _this.state = { count: 0 };
+    _this.addCount = _this.addCount.bind(_this);
     return _this;
   }
 
-  _createClass(Clock, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.timer = setInterval(function () {
-        return _this2.updateTime();
-      }, 1000);
-    }
-  }, {
-    key: 'updateTime',
-    value: function updateTime() {
+  _createClass(Counter, [{
+    key: 'addCount',
+    value: function addCount(amt) {
       this.setState({
-        date: new Date()
+        count: this.state.count + amt
       });
-      // this.state.date =  new Date();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearInterval(this.timer);
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
         'div',
         null,
         React.createElement(
           'h2',
           null,
-          'The time now is ',
-          this.state.date.toLocaleTimeString(),
-          '.'
+          'Count ',
+          this.state.count
+        ),
+        React.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this2.addCount(1);
+            } },
+          '+1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this2.addCount(2);
+            } },
+          '+2'
+        ),
+        React.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this2.addCount(3);
+            } },
+          '+3'
         )
       );
     }
   }]);
 
-  return Clock;
+  return Counter;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Clock, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('root'));
